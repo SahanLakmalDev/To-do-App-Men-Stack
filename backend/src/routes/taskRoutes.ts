@@ -60,7 +60,40 @@ const getTaskById = async (req:Request, res:Response) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+//Function to update a task by ID
+const updateTaskById = async (req:Request, res:Response) => {
+    try{
+        const taskId = req.params.id;
+        if (!(req.body.title || req.body.description)) {
+            return res.status(400).json({
+                message: "Provide at least one field to update: title or description",
+            });
+        }
 
+        const updatedTask = await Task.findByIdAndUpdate(
+            taskId,
+            {
+                ...(req.body.title && { title: req.body.title }),
+                ...(req.body.description && { description: req.body.description }),
+            },
+            {
+                new: true,
+            }
+        );
+
+        if (!updatedTask) {
+            return res.status(404).json({ message: "No task found with this ID" });
+        }
+
+        return res.status(200).json(updatedTask);
+
+    }catch (error){
+        console.error("Error updating task:", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+
+
+}
 
 // Route: Create a new task
 router.post("/", saveTask);
@@ -68,5 +101,7 @@ router.post("/", saveTask);
 router.get("/", getAllTasks);
 // Route: Get a single task by ID
 router.get("/:id", getTaskById);
+// Route: Update a task by ID
+router.put("/:id", updateTaskById);
 
 export default router;
