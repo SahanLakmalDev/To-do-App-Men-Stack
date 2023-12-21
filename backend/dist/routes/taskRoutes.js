@@ -78,6 +78,21 @@ const updateTaskById = async (req, res) => {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 };
+//Function to delete a task by ID
+const deleteTaskById = async (req, res) => {
+    const taskId = req.params.id;
+    try {
+        const deletedTask = await Task.findByIdAndDelete(taskId);
+        if (!deletedTask) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+        // return res.status(200).json(deletedTask);
+    }
+    catch (error) {
+        console.error("Error deleting task:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
 // Route: Create a new task
 router.post("/", saveTask);
 // Route: Get all tasks
@@ -86,5 +101,7 @@ router.get("/", getAllTasks);
 router.get("/:id", getTaskById);
 // Route: Update a task by ID
 router.put("/:id", updateTaskById);
+// Route: Delete a task by ID
+router.delete("/:id", deleteTaskById);
 export default router;
 //# sourceMappingURL=taskRoutes.js.map
