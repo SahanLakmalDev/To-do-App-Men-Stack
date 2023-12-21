@@ -11,10 +11,10 @@ app.use(cors());
 
 app.use("/tasks", taskRoutes);
 
-app.get("/", (req, res) => {
-    console.log(req);
-    return res.status(234).send("Welcome to to do app");
-});
+// app.get("/", (req, res) => {
+//     console.log(req);
+//     return res.status(234).send("Welcome to to do app");
+// });
 
 mongoose
     .connect(mongoDBURL)
