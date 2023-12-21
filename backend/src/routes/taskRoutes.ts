@@ -28,12 +28,27 @@ const saveTask = async (req:Request, res:Response) => {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 }
+//Function to get all tasks
+const getAllTasks = async (req:Request, res:Response) => {
+    try{
+        const tasks = await Task.find();
+        return res.status(200).json({
+            count:tasks.length,
+            data:tasks,
+        });
 
+    }catch (error){
+        console.error("Error fetching tasks:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
 
 
 
 
 // Route: Create a new task
 router.post("/", saveTask);
+// Route: Get all tasks
+router.get("/", getAllTasks);
 
 export default router;

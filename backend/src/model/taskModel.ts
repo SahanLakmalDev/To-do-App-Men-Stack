@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 
-type TaskType = {
+export type TaskType = {
     title: string,
     description:string
 };
