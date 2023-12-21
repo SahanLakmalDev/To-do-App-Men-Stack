@@ -1,12 +1,15 @@
 
 import './App.css'
+import {router} from "./app-routes.tsx";
+import React from "react";
+import {RouterProvider} from "react-router-dom";
 
 function App() {
 
 
   return (
     <>
-      <h1>To do App</h1>
+        <RouterProvider router={router}/>
     </>
   )
 }
