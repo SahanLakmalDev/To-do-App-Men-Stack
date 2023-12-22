@@ -23,7 +23,7 @@ export function DeleteTask() {
                 // Set the existing task data to the state
                 setTask(taskData);
             } catch (error) {
-                console.error('Error fetching book details:', error);
+                console.error('Error fetching task details:', error);
             } finally {
                 setLoading(false);
             }
@@ -37,10 +37,10 @@ export function DeleteTask() {
         try {
             setLoading(true);
 
-            // Send a DELETE request to remove the book from the server
+            // Send a DELETE request to remove the task from the server
             await axios.delete(`http://localhost:5555/tasks/${id}`);
 
-            // Redirect to the book list page or wherever you want to navigate after deleting
+            // Redirect to the task list page or wherever you want to navigate after deleting
             naviagate("/");
         } catch (error) {
             console.error('Error deleting book:', error);
@@ -59,7 +59,7 @@ export function DeleteTask() {
                     <p>Loading...</p>
                 ) : (
                     <>
-                        <p className="mb-4">Are you sure you want to delete the book titled "{task?.title}"?</p>
+                        <p className="mb-4">Are you sure you want to delete the task titled "{task?.title}"?</p>
                         <button
                             type="button"
                             onClick={handleDeleteTask}
