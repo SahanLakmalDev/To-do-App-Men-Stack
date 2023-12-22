@@ -1,13 +1,13 @@
 export class TaskDTO {
-    id: string;
+    _id: string;
     title: string;
     description: string;
     createdAt: string;
     updatedAt: string;
     __v: number;
 
-    constructor(id: string, title: string, description: string, createdAt: string, updatedAt: string, __v: number) {
-        this.id = id;
+    constructor(_id: string, title: string, description: string, createdAt: string, updatedAt: string, __v: number) {
+        this._id = _id;
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;

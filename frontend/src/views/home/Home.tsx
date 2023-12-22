@@ -65,7 +65,7 @@ export function Home() {
                     </thead>
                     <tbody>
                     {tasks.map((task, index) => (
-                        <tr key={task.id}>
+                        <tr key={task._id}>
                             <td className={"border border-slate-600 rounded-md text-center"}>{index + 1}</td>
                             <td className={"border border-slate-600 rounded-md text-center"}>{task.title}</td>
                             <td className={"border border-slate-600 rounded-md max-md:hidden text-center"}>
@@ -73,13 +73,13 @@ export function Home() {
                             </td>
                             <td className={"border border-slate-600 rounded-md text-center"}>
                                 <div className={"flex justify-center gap-x-4"}>
-                                    <NavLink to={`/tasks/details/${task.id}`}>
+                                    <NavLink to={`/tasks/details/${task._id}`}>
                                         <BsInfoCircle className={"text-2xl text-green-800"} />
                                     </NavLink>
-                                    <NavLink to={`/tasks/edit/${task.id}`}>
+                                    <NavLink to={`/tasks/edit/${task._id}`}>
                                         <AiOutlineEdit className={"text-2xl text-yellow-800"} />
                                     </NavLink>
-                                    <NavLink to={`/tasks/delete/${task.id}`}>
+                                    <NavLink to={`/tasks/delete/${task._id}`}>
                                         <MdOutlineDelete className={"text-2xl text-red-800"} />
                                     </NavLink>
                                 </div>

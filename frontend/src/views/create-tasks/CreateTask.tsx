@@ -12,7 +12,7 @@ export function CreateTask() {
     const navigate = useNavigate();
 
     // Function to handle form submission
-    const handleCreateBook = () => {
+    const handleCreateTask = () => {
         const data = {
             title,
             description,
@@ -26,7 +26,7 @@ export function CreateTask() {
             })
             .catch((error) => {
                 console.log(error);
-                alert('Failed to Create Book');
+                alert('Failed to Create Task');
                 setLoading(false);
             })
     }
@@ -55,7 +55,7 @@ export function CreateTask() {
                         className='border-2 border-gray-500 px-4 py-2  w-full '
                     />
                 </div>
-                <button className='p-2 bg-sky-300 m-8' onClick={handleCreateBook}>
+                <button className='p-2 bg-sky-300 m-8' onClick={handleCreateTask}>
                     Save
                 </button>
             </div>
