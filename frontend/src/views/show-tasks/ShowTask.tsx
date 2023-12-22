@@ -37,11 +37,7 @@ export function ShowTask() {
             {loading ? (
                 <Spinner/>
             ):(
-                <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
-                  <div className="my-4">
-                    <span className="text-xl mr-4 text-gray-500">ID:</span>
-                    <span>{task?._id}</span>
-                  </div>
+                <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4 justify-center m-auto my-5">
                   <div className="my-4">
                     <span className="text-xl mr-4 text-gray-500">Title:</span>
                     <span>{task?.title}</span>

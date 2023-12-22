@@ -8,6 +8,8 @@ import {MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import {TaskDTO} from "../../dto/TaskDTO.ts";
 import {BsInfoCircle} from "react-icons/bs";
 import {AiOutlineEdit} from "react-icons/ai";
+import {TaskTable} from "../../home/TaskTable.tsx";
+import {TaskCard} from "../../home/TaskCard.tsx";
 
 export function Home() {
 
@@ -15,6 +17,7 @@ export function Home() {
 
     const [tasks, setTasks] = useState<TaskDTO[]>([]);
     const [loading, setLoading] = useState(false);
+    const [showType, setShowType] = useState('table');
 
     useEffect(() => {
         setLoading(true);
@@ -34,7 +37,20 @@ export function Home() {
 
 
     return (
-        <div className={"p-4"}>
+        <div className={"p-4 max-w-7xl m-auto"}>
+            <div className='flex justify-center items-center gap-x-4'>
+                <button
+                    className='bg-sky-300 hover:bg-sky-600 px-4 rounded-lg text-xl mt-3'
+                    onClick={() => setShowType('table')}>
+                    Table
+                </button>
+                <button
+                    className='bg-sky-300 hover:bg-sky-600 px-4 rounded-lg text-xl mt-3'
+                    onClick={() => setShowType('card')}>
+                    Card
+                </button>
+            </div>
+
             <div className={"flex justify-between items-center"}>
                 <h1 className={"text-3xl my-8"}>
                     Tasks List
@@ -46,48 +62,7 @@ export function Home() {
             {loading ? (
                 <Spinner/>
             ):(
-                <table className={"w-full border-separate border-spacing-2"}>
-                    <thead>
-                       <tr>
-                           <th className={"border border-slate-600 rounded-md"}>
-                               No
-                           </th>
-                           <th className={"border border-slate-600 rounded-md"}>
-                               Title
-                           </th>
-                           <th className={"border border-slate-600 rounded-md max-md:hidden"}>
-                               Description
-                           </th>
-                           <th className={"border border-slate-600 rounded-md"}>
-                               Operations
-                           </th>
-                       </tr>
-                    </thead>
-                    <tbody>
-                    {tasks.map((task, index) => (
-                        <tr key={task._id}>
-                            <td className={"border border-slate-600 rounded-md text-center"}>{index + 1}</td>
-                            <td className={"border border-slate-600 rounded-md text-center"}>{task.title}</td>
-                            <td className={"border border-slate-600 rounded-md max-md:hidden text-center"}>
-                                {task.description}
-                            </td>
-                            <td className={"border border-slate-600 rounded-md text-center"}>
-                                <div className={"flex justify-center gap-x-4"}>
-                                    <NavLink to={`/tasks/details/${task._id}`}>
-                                        <BsInfoCircle className={"text-2xl text-green-800"} />
-                                    </NavLink>
-                                    <NavLink to={`/tasks/edit/${task._id}`}>
-                                        <AiOutlineEdit className={"text-2xl text-yellow-800"} />
-                                    </NavLink>
-                                    <NavLink to={`/tasks/delete/${task._id}`}>
-                                        <MdOutlineDelete className={"text-2xl text-red-800"} />
-                                    </NavLink>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+                showType === 'table'? <TaskTable tasks={tasks}/> : <TaskCard tasks={tasks} />
             )}
 
 
