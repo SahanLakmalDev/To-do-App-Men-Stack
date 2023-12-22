@@ -40,7 +40,7 @@ export function ShowTask() {
                 <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
                   <div className="my-4">
                     <span className="text-xl mr-4 text-gray-500">ID:</span>
-                    <span>{task?.id}</span>
+                    <span>{task?._id}</span>
                   </div>
                   <div className="my-4">
                     <span className="text-xl mr-4 text-gray-500">Title:</span>
